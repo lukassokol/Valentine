@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/Heart.webp" />
+    <title>Budeš moja valentínka?</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="title" class="item"><p>Budeš moja Valentínka?</p></div>
+
+      <div class="item row">
+        <div id="healthBar">
+          <img src="/Heart.webp" class="heart" />
+          <img src="/Heart.webp" class="heart" />
+          <img src="/Heart.webp" class="heart" />
+          <img src="/Heart.webp" class="heart" />
+          <img src="/Heart.webp" class="heart" />
+        </div>
+      </div>
+
+      <div class="item row">
+        <button id="yesBtn" class="yes">Áno</button>
+        <button id="noBtn" class="no">Nie</button>
+      </div>
+
+      <div class="item">
+        <img src="/Love.webp" class="love" />
+      </div>
+    </div>
+
+    <script>
+      const HEART_URL = "/Heart.webp"
+      const title = document.getElementById("title")
+      const healthBar = document.getElementById("healthBar")
+      const yesBtn = document.getElementById("yesBtn")
+      const noBtn = document.getElementById("noBtn")
+      let decrement = 0
+
+      function doNotLoseHope() {
+        if (healthBar.childElementCount > 0) {
+          healthBar.removeChild(healthBar.lastElementChild)
+          decrement += 0.1
+        }
+
+        if (healthBar.childElementCount === 1) {
+          decrement = 1
+          yesBtn.textContent = "Tak teraz už nemáš na výber"
+          noBtn.remove()
+        }
+
+        // yesBtn.style.transform = `scale(${1 + decrement})`
+        noBtn.style.transform = `scale(${1 - decrement})`
+      }
+
+      function sheSaidYes() {
+        title.textContent = "Vedel som to. Tak na ktorú hodinu sa dohodneme? 😊"
+        yesBtn.hidden = true
+        noBtn.hidden = true
+        healthBar.hidden = true
+      }
+
+      yesBtn.addEventListener("click", () => sheSaidYes())
+      noBtn.addEventListener("click", () => doNotLoseHope())
+    </script>
+    <style>
+      @import url("https://fonts.cdnfonts.com/css/andy-pro");
+
+      :root {
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+      }
+
+      body,
+      html {
+        background-color: #f1dee1;
+        color: #b23a33;
+        font-family: "Andy Pro", sans-serif;
+        height: 100%;
+        font-size: 3rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .container {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.5rem;
+      }
+
+      .row {
+        flex-direction: row;
+      }
+
+      .column {
+        flex-direction: column;
+      }
+
+      button {
+        font-family: "Andy Pro", sans-serif;
+        font-size: 2rem;
+        border-radius: 5px;
+        outline: none;
+        padding: 10px 20px;
+        color: #ffffff;
+        border: none;
+        transition: all 0.2s ease-in-out;
+        margin: 0.25rem;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      .yes {
+        background: #3e7044;
+      }
+
+      .no {
+        background: #a83232;
+      }
+
+      img {
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        margin: 0rem;
+      }
+
+      .love {
+        height: 5rem;
+        width: 3rem;
+      }
+    </style>
+  </body>
+</html>
